@@ -80,7 +80,11 @@ function renderProductsGrid() {
     .forEach((button) => {
       button.addEventListener('click', () => {
         const productId = button.dataset.productId;
-        addToCart(productId);
+        // Find the corresponding quantity select element
+        const productContainer = button.closest('.product-container');
+        const quantitySelect = productContainer.querySelector('.product-quantity-container select');
+        const quantity = parseInt(quantitySelect.value, 10);
+        addToCart(productId, quantity);
         updateCartQuantity();
       });
     });
